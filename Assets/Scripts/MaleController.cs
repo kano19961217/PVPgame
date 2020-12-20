@@ -56,7 +56,7 @@ public class MaleController : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             //角色受傷
             anim.SetTrigger("Skill");
@@ -71,18 +71,18 @@ public class MaleController : MonoBehaviour
             }
 
         }
-
+        
         if (Input.GetKeyDown(KeyCode.J))
         {
-            anim.SetInteger("heavy", 1);
+            anim.SetInteger("Heavy", 1);
 
-            //設定 重擊 Hit
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_heavy") && hitCount == 0 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.50f)
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_heavy") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.50f)
             {
-                hitCount = 1;
+                anim.SetInteger("Heavy", 0);
             }
-        }
 
+        }
+        
         if (Input.GetKeyDown(KeyCode.G))
         {
             anim.SetInteger("Attack", 1);
@@ -115,6 +115,7 @@ public class MaleController : MonoBehaviour
             Debug.Log("攻擊結束");
             hitCount = 0;
             anim.SetInteger("Attack", 0);
+            anim.SetInteger("Heavy", 0);
         }
 
 
