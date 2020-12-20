@@ -56,7 +56,7 @@ public class MaleController : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             //角色受傷
             anim.SetTrigger("Skill");
@@ -70,6 +70,17 @@ public class MaleController : MonoBehaviour
                 hurtBar.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 100;
             }
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            anim.SetInteger("heavy", 1);
+
+            //設定 重擊 Hit
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_heavy") && hitCount == 0 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.50f)
+            {
+                hitCount = 1;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.G))
@@ -98,7 +109,8 @@ public class MaleController : MonoBehaviour
         // 判斷攻擊動畫結束
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_combo01") ||
              anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_combo02") ||
-             anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_combo03")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+             anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_combo03") ||
+             anim.GetCurrentAnimatorStateInfo(0).IsName("Male_attack_heavy")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
         {
             Debug.Log("攻擊結束");
             hitCount = 0;

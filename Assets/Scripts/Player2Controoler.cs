@@ -40,7 +40,7 @@ public class Player2Controoler : MonoBehaviour
         // 重設生命
         if (healthReset)
         {
-            healthBar.sizeDelta += new Vector2(1, 0) * Time.deltaTime * 300;
+            healthBar.sizeDelta += new Vector2(1, 0) * Time.deltaTime * 400;
             hurtBar.sizeDelta += new Vector2(1, 0) * Time.deltaTime * 300;
 
             // 生命滿時停止
