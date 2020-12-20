@@ -16,6 +16,10 @@ public class MaleController : MonoBehaviour
     public RectTransform hurtBar, healthBar;
     public int hurt, health;
 
+    // 角色必殺技
+    public GameObject skill;
+    public Transform skillTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +46,21 @@ public class MaleController : MonoBehaviour
 
         ///// TODO 
         // 測試扣血用
+        /*
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //角色受傷
             health -= 10;
             float a = health * 7.2f;
             healthBar.sizeDelta = new Vector2(a, healthBar.sizeDelta.y);
+        }
+        */
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //角色受傷
+            anim.SetTrigger("Skill");
+            Invoke("Skill", 2f);
         }
 
         // 受傷血條跟上實際血條
@@ -94,6 +107,11 @@ public class MaleController : MonoBehaviour
 
 
 
+    }
+
+    void Skill()
+    {
+        Instantiate(skill, skillTransform.position, skillTransform.rotation);
     }
 
     void OnCollisionEnter(Collision other)

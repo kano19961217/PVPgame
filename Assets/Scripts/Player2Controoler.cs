@@ -11,6 +11,8 @@ public class Player2Controoler : MonoBehaviour
     public int hurt, health;
     public bool healthReset;
 
+    public GameObject box;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +60,8 @@ public class Player2Controoler : MonoBehaviour
             animator.SetTrigger("Impact");
             float a = health * 7.2f;
             healthBar.sizeDelta = new Vector2(a, healthBar.sizeDelta.y);
-            
+
+            Instantiate(box, other.transform.position, other.transform.rotation);
         }
     }
 }

@@ -16,7 +16,7 @@ sceneName = SceneManager.
 
     public void StartGame()
     {
-        SceneManager.LoadScene("CharacterScreen");  //轉換角色場景
+        SceneManager.LoadScene("DemoScene_Classic_Trees");  //轉換角色場景
     }
 
    
