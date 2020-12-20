@@ -44,7 +44,7 @@ public class Player2Controoler : MonoBehaviour
             hurtBar.sizeDelta += new Vector2(1, 0) * Time.deltaTime * 300;
 
             // 生命滿時停止
-            if (healthBar.sizeDelta.x >= 720)
+            if (healthBar.sizeDelta.x >= 1500)
             {
                 healthReset = false;
             }
@@ -58,7 +58,7 @@ public class Player2Controoler : MonoBehaviour
             //角色受傷
             health -= 10;
             animator.SetTrigger("Impact");
-            float a = health * 7.2f;
+            float a = health * 15f;
             healthBar.sizeDelta = new Vector2(a, healthBar.sizeDelta.y);
 
             Instantiate(box, other.transform.position, other.transform.rotation);
