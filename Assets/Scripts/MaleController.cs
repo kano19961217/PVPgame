@@ -27,6 +27,8 @@ public class MaleController : MonoBehaviour
     // 能量點數
     public int skillPoint = 0;
 
+    public GameController gameController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,10 +37,20 @@ public class MaleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameController.status == 2)
+        {
+            Move();
+            SkillBar();
+        }
+    }
+
+    void Move()
+    {
         float horizontal = Input.GetAxis("Horizontal");
 
         // 角色移動
-        if (horizontal != 0) {
+        if (horizontal != 0)
+        {
             anim.SetFloat("Move", Mathf.Round(horizontal));
             this.GetComponent<Transform>().position += new Vector3(0f, 0f, -horizontal * speed);
         }
@@ -64,7 +76,7 @@ public class MaleController : MonoBehaviour
         */
 
         if (Input.GetKeyDown(KeyCode.H))
-        {  
+        {
             if (skillPoint >= 100)
             {
                 //施放大招
@@ -73,7 +85,7 @@ public class MaleController : MonoBehaviour
                 Invoke("Skill", 2f);
 
                 skillPoint = 0;
-            } 
+            }
         }
 
         // 受傷血條跟上實際血條
@@ -84,7 +96,7 @@ public class MaleController : MonoBehaviour
             }
 
         }
-        
+
         if (Input.GetKeyDown(KeyCode.J))
         {
             anim.SetInteger("Heavy", 1);
@@ -95,7 +107,7 @@ public class MaleController : MonoBehaviour
             }
 
         }
-        
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             anim.SetInteger("Attack", 1);
@@ -130,9 +142,6 @@ public class MaleController : MonoBehaviour
             anim.SetInteger("Attack", 0);
             anim.SetInteger("Heavy", 0);
         }
-
-        SkillBar();
-
     }
 
     void SkillBar()
