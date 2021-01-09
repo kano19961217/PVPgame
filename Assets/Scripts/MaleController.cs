@@ -12,13 +12,20 @@ public class MaleController : MonoBehaviour
     //角色動畫
     public Animator anim;
 
-    // 角色生命
+    //// 角色生命
+    // 血量 UI
     public RectTransform hurtBar, healthBar;
+    // 血量
     public int hurt, health;
 
-    // 角色必殺技
+    //// 角色必殺技
     public GameObject skill;
+    // 大招位置
     public Transform skillTransform;
+    // 能量UI 
+    public RectTransform skillBar;
+    // 能量點數
+    public int skillPoint = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -57,10 +64,16 @@ public class MaleController : MonoBehaviour
         */
 
         if (Input.GetKeyDown(KeyCode.H))
-        {
-            //角色受傷
-            anim.SetTrigger("Skill");
-            Invoke("Skill", 2f);
+        {  
+            if (skillPoint >= 100)
+            {
+                //施放大招
+                anim.SetTrigger("Skill");
+                //2秒後施放
+                Invoke("Skill", 2f);
+
+                skillPoint = 0;
+            } 
         }
 
         // 受傷血條跟上實際血條
@@ -118,8 +131,14 @@ public class MaleController : MonoBehaviour
             anim.SetInteger("Heavy", 0);
         }
 
+        SkillBar();
 
+    }
 
+    void SkillBar()
+    {
+        float a = skillPoint * 4f;
+        skillBar.sizeDelta = new Vector2(a + 10f, skillBar.sizeDelta.y);
     }
 
     void Skill()

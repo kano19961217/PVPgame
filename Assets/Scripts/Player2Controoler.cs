@@ -13,6 +13,8 @@ public class Player2Controoler : MonoBehaviour
 
     public GameObject box;
 
+    public MaleController maleController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,8 @@ public class Player2Controoler : MonoBehaviour
             healthBar.sizeDelta = new Vector2(a, healthBar.sizeDelta.y);
 
             Instantiate(box, other.transform.position, other.transform.rotation);
+
+            maleController.skillPoint += 10;
         }
     }
 }
